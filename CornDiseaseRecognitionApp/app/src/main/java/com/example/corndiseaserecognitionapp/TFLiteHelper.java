@@ -79,7 +79,7 @@ public class TFLiteHelper {
 
     // ---- Kolom pemanggilan model tflite ----
     private MappedByteBuffer loadmodelfile(Activity activity) throws IOException {
-        String MODEL_NAME = "vegs.tflite";
+        String MODEL_NAME = "model.tflite";
         AssetFileDescriptor fileDescriptor = activity.getAssets().openFd(MODEL_NAME);
         FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
         FileChannel fileChannel = inputStream.getChannel();
@@ -118,7 +118,7 @@ public class TFLiteHelper {
     // ---- Kolom postprocessing ----
     public String showresult() {
         try {
-            labels = FileUtil.loadLabels(context, "vegs.txt");
+            labels = FileUtil.loadLabels(context, "corn.txt");
         } catch (Exception e) {
             e.printStackTrace();
             return null;
