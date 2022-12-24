@@ -31,6 +31,7 @@ class CornDataLoader(BaseDataLoader):
     def get_trainloader(self):
         self.train_generator = self.train_datagen.flow_from_directory(
             self.train_dir,
+            subset='training',
             target_size=self.image_size,
             batch_size=self.batch_size,
             class_mode='categorical'
@@ -40,6 +41,7 @@ class CornDataLoader(BaseDataLoader):
     def get_validationloader(self):
         self.valid_generator = self.valid_datagen.flow_from_directory(
             self.val_dir,
+            subset='validation',
             target_size=self.image_size,
             batch_size=self.batch_size,
             class_mode='categorical'
