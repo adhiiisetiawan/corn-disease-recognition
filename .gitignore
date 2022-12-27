@@ -197,5 +197,5 @@ poetry.toml
 # Ignore all local history of files
 .history
 .ionide
-
+data/
 # End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode,jupyternotebooks
