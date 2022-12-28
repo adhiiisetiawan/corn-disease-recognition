@@ -5,8 +5,8 @@ from keras.callbacks import TensorBoard, ModelCheckpoint
 
 
 class CornDiseaseRecognitionTrainer(BaseTrain):
-    def __init__(self, model, data, config):
-        super(CornDiseaseRecognitionTrainer, self).__init__(model, data, config)
+    def __init__(self, model, train_data, val_data, config):
+        super(CornDiseaseRecognitionTrainer, self).__init__(model, train_data, val_data, config)
         self.callbacks = []
         self.loss = []
         self.acc = []
@@ -35,10 +35,11 @@ class CornDiseaseRecognitionTrainer(BaseTrain):
 
     def train(self):
         history = self.model.fit(
-            self.data[0], self.data[1],
+            self.train_data,
             epochs=self.config.trainer.num_epochs,
             verbose=self.config.trainer.verbose_training,
             batch_size=self.config.trainer.batch_size,
+            validation_data=self.val_data,
             validation_split=self.config.trainer.validation_split,
             callbacks=self.callbacks,
         )

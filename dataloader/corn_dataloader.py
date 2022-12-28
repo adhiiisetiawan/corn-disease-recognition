@@ -12,7 +12,7 @@ class CornDataLoader(BaseDataLoader):
         
         self.train_datagen = tf.keras.preprocessing.image.ImageDataGenerator(
             rescale=1/255,
-            validation_split=0.2,
+            validation_split=self.config.trainer.validation_split,
             rotation_range=30,
             width_shift_range=0.2,
             height_shift_range=0.2,
@@ -25,7 +25,7 @@ class CornDataLoader(BaseDataLoader):
 
         self.valid_datagen = tf.keras.preprocessing.image.ImageDataGenerator(
             rescale=1/255,
-            validation_split=0.2    
+            validation_split=self.config.trainer.validation_split    
         )
 
     def get_trainloader(self):

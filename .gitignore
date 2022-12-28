@@ -198,4 +198,5 @@ poetry.toml
 .history
 .ionide
 data/
+experiments/
 # End of https://www.toptal.com/developers/gitignore/api/python,visualstudiocode,jupyternotebooks
