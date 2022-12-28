@@ -7,7 +7,7 @@ class CornDiseaseClassifier(BaseModel):
     def __init__(self, config):
         super(CornDiseaseClassifier, self).__init__(config)
         self.build_model()
-        self.compile(self.config.model.optimizer, self.config.model.losses, 'acc')
+        self.compile(self.config.model.optimizer, self.config.model.losses, ['accuracy'])
 
     def build_model(self):
         self.base_model = MobileNetV2(input_shape=(224, 224, 3),
