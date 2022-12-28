@@ -7,6 +7,7 @@ class CornDiseaseClassifier(BaseModel):
     def __init__(self, config):
         super(CornDiseaseClassifier, self).__init__(config)
         self.build_model()
+        self.compile(self.config.model.optimizer, self.config.model.losses, 'acc')
 
     def build_model(self):
         self.base_model = MobileNetV2(input_shape=(224, 224, 3),
@@ -26,6 +27,8 @@ class CornDiseaseClassifier(BaseModel):
         self.x = tf.keras.layers.Dense(2, activation='softmax')(self.x)
 
         self.model = tf.keras.models.Model(self.base_model.input, self.x)
+
+        return self.model
     
     def compile(self, optimizer, loss, metrics):
         self.build_model().compile(optimizer=optimizer, loss=loss, metrics=metrics)

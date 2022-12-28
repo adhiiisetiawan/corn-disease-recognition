@@ -12,7 +12,7 @@ class CornDiseaseRecognitionTrainer(BaseTrain):
         self.acc = []
         self.val_loss = []
         self.val_acc = []
-        self.init_calbacks()
+        self.init_callbacks()
     
     def init_callbacks(self):
         self.callbacks.append(
