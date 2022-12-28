@@ -1,2 +1,4 @@
-tensorflow
 dotmap
+matplotlib
+numpy
+tensorflow
