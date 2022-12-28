@@ -3,7 +3,10 @@
       "name": "corn_disease_from_config"
     },
     "data_loader": {
-      "name": "corn_dataloader.CornDataLoader"
+      "name": "corn_dataloader.CornDataLoader",
+      "train_dir": "data/",
+      "val_dir": "data/",
+      "input_size": 224
     },
     "model":{
       "name": "corn_classifier.CornDiseaseClassifier",

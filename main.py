@@ -20,7 +20,8 @@ def main():
     create_dirs([config.callbacks.tensorboard_log_dir, config.callbacks.checkpoint_dir])
 
     print('Create the data generator.')
-    data_loader = CornDataLoader(config, 'data/', 'data/', (224, 224), config.trainer.batch_size)
+    data_loader = CornDataLoader(config, config.data_loader.train_dir, config.data_loader.val_dir, 
+                                    config.data_loader.input_size, config.trainer.batch_size)
 
     print('Create the model.')
     model = CornDiseaseClassifier(config)
