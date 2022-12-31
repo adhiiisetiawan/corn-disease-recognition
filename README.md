@@ -28,6 +28,14 @@ The project will include the following steps:
 
 This project is suitable for individuals with an interest in agriculture and machine learning, and those looking to develop skills in image classification, Android app development, and disease detection
 
+## Prerequisites
+Before training the model and deploying the app, you will need to install the following dependencies:
+
+1. Python 3.6 or higher
+2. TensorFlow 2.0 or higher
+3. Android Studio 4.0 or higher [OPTIONAL]
+
+
 ## How to run
 
 If you want to retrain, you can following this step.
@@ -58,11 +66,15 @@ Train model with chosen experiment configuration, you can copy default configura
 python3 main.py -c configs/[your-personal-config].json
 ```
 
-You can override any parameter from command line like this
+## Android App Development
+An Android app was developed to allow users to capture and classify images of corn leaves using the trained model. The app includes a user-friendly interface for capturing and uploading images, as well as displaying the results of the classification. You can download the android apps here (link will be update soon). 
 
-```bash
-python src/train.py trainer.max_epochs=20 datamodule.batch_size=64
-```
+### Export APK Manually [OPTIONAL]
+You also can export APK manually by opening [CornDiseaseRecognitionApp](https://github.com/adhiiisetiawan/corn-disease-recognition/tree/main/CornDiseaseRecognitionApp) in Android Studio and follow this step. 
+1. Open the project in Android Studio.
+2. Go to "Build" > "Generate Signed APK" in the menu.
+3. Follow the prompts to create a signed APK
+
 
 ## Reference
 * Dataset: [Corn Leaf Infection Dataset Version 1](https://www.kaggle.com/datasets/qramkrishna/corn-leaf-infection-dataset) by Acharya (October 2020).
