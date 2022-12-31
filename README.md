@@ -67,7 +67,7 @@ python3 main.py -c configs/[your-personal-config].json
 ```
 
 ## Android App Development
-An Android app was developed to allow users to capture and classify images of corn leaves using the trained model. The app includes a user-friendly interface for capturing and uploading images, as well as displaying the results of the classification. You can download the android apps here (link will be update soon). 
+An Android app was developed to allow users to capture and classify images of corn leaves using the trained model. The app includes a user-friendly interface for capturing and uploading images, as well as displaying the results of the classification. You can download the android apps [here](https://github.com/adhiiisetiawan/corn-disease-recognition/blob/main/CornDiseaseRecognitionApp/app/release/Corn%20Disease%20Recognition%20App.apk). 
 
 ### Export APK Manually [OPTIONAL]
 You also can export APK manually by opening [CornDiseaseRecognitionApp](https://github.com/adhiiisetiawan/corn-disease-recognition/tree/main/CornDiseaseRecognitionApp) in Android Studio and follow this step. 
