@@ -1,6 +1,6 @@
 <div align="center">
 
-# Corn Disease Recognition [Under Construction of Documentation]
+# Corn Disease Recognition
 
 [![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?logo=tensorflow&logoColor=white)](https://www.tensorflow.org)
