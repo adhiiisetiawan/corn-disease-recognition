@@ -30,22 +30,20 @@ This project is suitable for individuals with an interest in agriculture and mac
 
 ## How to run
 
+If you want to retrain, you can following this step.
+
 Install dependencies
 
 ```bash
 # clone project
-git clone https://github.com/YourGithubName/your-repo-name
-cd your-repo-name
+git clone https://github.com/adhiiisetiawan/corn-disease-recognition
+cd corn-disease-recognition
 
-# [OPTIONAL] create conda environment
-conda create -n myenv python=3.9
-conda activate myenv
-
-# install pytorch according to instructions
-# https://pytorch.org/get-started/
+# [OPTIONAL] create python environment
+python3 -m venv [your-python-venv-name]
 
 # install requirements
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 Train model with default configuration
