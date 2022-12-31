@@ -49,17 +49,13 @@ pip3 install -r requirements.txt
 Train model with default configuration
 
 ```bash
-# train on CPU
-python src/train.py trainer=cpu
-
-# train on GPU
-python src/train.py trainer=gpu
+python3 main.py -c configs/corn_disease_config.json
 ```
 
-Train model with chosen experiment configuration from [configs/experiment/](configs/experiment/)
+Train model with chosen experiment configuration, you can copy default configuration and change any stuff there such as, learning rate, optimizer, batch size, etc. You also can change with your custom dataset by change in `configuration.json` file. Just change in `train_dir` and `val_dir` key. And you can train with your personal configuration.
 
 ```bash
-python src/train.py experiment=experiment_name.yaml
+python3 main.py -c configs/[your-personal-config].json
 ```
 
 You can override any parameter from command line like this
