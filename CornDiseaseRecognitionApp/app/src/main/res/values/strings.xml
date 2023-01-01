@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Corn Disease Recognition App</string>
+    <string name="click_below_to_select_a_image">Click below to select a Image</string>
+    <string name="classify">Classify</string>
 </resources>

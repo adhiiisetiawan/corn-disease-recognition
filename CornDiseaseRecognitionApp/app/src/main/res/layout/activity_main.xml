@@ -13,9 +13,9 @@
         android:layout_above="@+id/image"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="50dp"
-        android:text="Click below to select a Image"
+        android:text="@string/click_below_to_select_a_image"
         android:textStyle="bold"
-        android:textSize="20dp">
+        android:textSize="20sp">
 
     </TextView>
     <ImageView
@@ -33,7 +33,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/image"
         android:layout_margin="50dp"
-        android:text="Classify"
+        android:text="@string/classify"
         android:background="#ffff"
         android:textColor="#ffff">
     </Button>
