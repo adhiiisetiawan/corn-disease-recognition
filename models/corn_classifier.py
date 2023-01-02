@@ -1,6 +1,7 @@
 import tensorflow as tf
 from tensorflow.keras.applications import MobileNetV2
 from base.base_model import BaseModel
+from preprocessing.preprocessor import ImagePreprocessor
 
 
 class CornDiseaseClassifier(BaseModel):
@@ -10,23 +11,49 @@ class CornDiseaseClassifier(BaseModel):
         self.compile(self.config.model.optimizer, self.config.model.losses, ['accuracy'])
 
     def build_model(self):
-        self.base_model = MobileNetV2(input_shape=(224, 224, 3),
+        self.preprocessor = ImagePreprocessor()
+
+        self.base_model = MobileNetV2(input_shape=(self.config.data_loader.input_size, 
+                                                   self.config.data_loader.input_size, 3),
                                       include_top=False,
                                       weights='imagenet'
                                     )
         self.base_model.trainable = False
-        self.last_output = self.base_model.output
+        
+        self.inputs = tf.keras.Input(shape=(self.config.data_loader.input_size, 
+                                            self.config.data_loader.input_size, 3))
+        
+        self.x = self.preprocessor.data_augmentation(self.inputs)
+        self.x = self.preprocessor.preprocess_input(self.x)
+        self.x = self.base_model(self.x, training=False)
 
-        self.x = tf.keras.layers.Flatten(name='flatten')(self.last_output)
-        self.x = tf.keras.layers.Dense(32, activation='relu')(self.x)
-        self.x = tf.keras.layers.Dropout(0.2)(self.x)
-        self.x = tf.keras.layers.Dense(64, activation='relu')(self.x)
-        self.x = tf.keras.layers.Dropout(0.2)(self.x)
-        self.x = tf.keras.layers.Dense(128, activation='relu')(self.x)
-        self.x = tf.keras.layers.Dropout(0.5)(self.x)
-        self.x = tf.keras.layers.Dense(2, activation='softmax')(self.x)
+        self.x = tf.keras.layers.GlobalAveragePooling2D(self.x)
 
-        self.model = tf.keras.models.Model(self.base_model.input, self.x)
+        self.x = tf.keras.layers.Dense(1024, activation='relu')(self.x)
+        self.x = tf.keras.layers.Dropout(0.25)(self.x)
+
+        self.x = tf.keras.layers.Dense(512, activation='relu')(self.x)
+        self.x = tf.keras.layers.Dropout(0.25)(self.x)
+
+        self.x = tf.keras.layers.Dense(256, activation='relu')(self.x)
+        self.x = tf.keras.layers.Dropout(0.25)(self.x)                  
+
+        self.x = tf.keras.layers.Dense(2, activation='softmax')(self.x) 
+
+        self.model = tf.keras.Model(self.inputs, self.x)
+
+        # self.last_output = self.base_model.output
+
+        # self.x = tf.keras.layers.Flatten(name='flatten')(self.last_output)
+        # self.x = tf.keras.layers.Dense(32, activation='relu')(self.x)
+        # self.x = tf.keras.layers.Dropout(0.2)(self.x)
+        # self.x = tf.keras.layers.Dense(64, activation='relu')(self.x)
+        # self.x = tf.keras.layers.Dropout(0.2)(self.x)
+        # self.x = tf.keras.layers.Dense(128, activation='relu')(self.x)
+        # self.x = tf.keras.layers.Dropout(0.5)(self.x)
+        # self.x = tf.keras.layers.Dense(2, activation='softmax')(self.x)
+
+        # self.model = tf.keras.models.Model(self.base_model.input, self.x)
 
         return self.model
     
