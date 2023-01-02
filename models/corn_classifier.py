@@ -13,6 +13,7 @@ class CornDiseaseClassifier(BaseModel):
 
     def build_model(self):
         self.preprocessor = ImagePreprocessor()
+        self.global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
 
         self.base_model = MobileNetV2(input_shape=(self.config.data_loader.input_size, 
                                                    self.config.data_loader.input_size, 3),
@@ -28,7 +29,7 @@ class CornDiseaseClassifier(BaseModel):
         self.x = self.preprocessor.preprocess_input(self.x)
         self.x = self.base_model(self.x, training=False)
 
-        self.x = tf.keras.layers.GlobalAveragePooling2D(self.x)
+        self.x = self.global_average_layer(self.x)
 
         self.x = tf.keras.layers.Dense(1024, activation='relu')(self.x)
         self.x = tf.keras.layers.Dropout(0.25)(self.x)
