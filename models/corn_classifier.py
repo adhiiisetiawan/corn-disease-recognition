@@ -8,7 +8,8 @@ class CornDiseaseClassifier(BaseModel):
     def __init__(self, config):
         super(CornDiseaseClassifier, self).__init__(config)
         self.build_model()
-        self.compile(self.config.model.optimizer, self.config.model.losses, ['accuracy'])
+        self.compile(tf.keras.optimizers.deserialize(self.config.model.optimizer), 
+                     self.config.model.losses, ['accuracy'])
 
     def build_model(self):
         self.preprocessor = ImagePreprocessor()
