@@ -10,8 +10,12 @@
     },
     "model":{
       "name": "corn_classifier.CornDiseaseClassifier",
-      "learning_rate": 0.001,
-      "optimizer": "adam",
+      "optimizer": {
+        "class_name": "Adam",
+        "config": {
+          "learning_rate": 0.0001
+        }
+      },
       "losses": "categorical_crossentropy"
     },
     "trainer":{
