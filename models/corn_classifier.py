@@ -43,20 +43,6 @@ class CornDiseaseClassifier(BaseModel):
         self.x = tf.keras.layers.Dense(2, activation='softmax')(self.x) 
 
         self.model = tf.keras.Model(self.inputs, self.x)
-
-        # self.last_output = self.base_model.output
-
-        # self.x = tf.keras.layers.Flatten(name='flatten')(self.last_output)
-        # self.x = tf.keras.layers.Dense(32, activation='relu')(self.x)
-        # self.x = tf.keras.layers.Dropout(0.2)(self.x)
-        # self.x = tf.keras.layers.Dense(64, activation='relu')(self.x)
-        # self.x = tf.keras.layers.Dropout(0.2)(self.x)
-        # self.x = tf.keras.layers.Dense(128, activation='relu')(self.x)
-        # self.x = tf.keras.layers.Dropout(0.5)(self.x)
-        # self.x = tf.keras.layers.Dense(2, activation='softmax')(self.x)
-
-        # self.model = tf.keras.models.Model(self.base_model.input, self.x)
-
         return self.model
     
     def compile(self, optimizer, loss, metrics):
