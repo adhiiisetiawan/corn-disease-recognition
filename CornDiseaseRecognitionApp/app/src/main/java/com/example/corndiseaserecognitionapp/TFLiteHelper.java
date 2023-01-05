@@ -32,7 +32,6 @@ public class TFLiteHelper {
     private List<String> labels;
     private Interpreter tflite;
 
-    private MappedByteBuffer tfliteModel;
     private TensorImage inputImageBuffer;
     private TensorBuffer outputProbabilityBuffer;
     private TensorProcessor probabilityProcessor;
@@ -43,7 +42,7 @@ public class TFLiteHelper {
     private static final float PROBABILITY_MEAN = 0.0f;
     private static final float PROBABILITY_STD = 255.0f;
 
-    private Activity context;
+    private final Activity context;
 
     TFLiteHelper(Activity context) {
         this.context = context;
@@ -57,9 +56,8 @@ public class TFLiteHelper {
             e.printStackTrace();
         }
     }
-    // ----------------------------------------------------
 
-    // ---- Kolom preprocessing gambar ----
+    // preprocessing input image
     private TensorImage loadImage(final Bitmap bitmap) {
         // Loads bitmap into a TensorImage.
         inputImageBuffer.load(bitmap);
@@ -75,9 +73,8 @@ public class TFLiteHelper {
                         .build();
         return imageProcessor.process(inputImageBuffer);
     }
-    // ----------------------------------------------------
 
-    // ---- Kolom pemanggilan model tflite ----
+    // load tflite model
     private MappedByteBuffer loadmodelfile(Activity activity) throws IOException {
         String MODEL_NAME = "model.tflite";
         AssetFileDescriptor fileDescriptor = activity.getAssets().openFd(MODEL_NAME);
@@ -113,9 +110,8 @@ public class TFLiteHelper {
     private TensorOperator getPreprocessNormalizeOp() {
         return new NormalizeOp(IMAGE_MEAN, IMAGE_STD);
     }
-    // ----------------------------------------------------
 
-    // ---- Kolom postprocessing ----
+    // postprocessing output model
     public String showresult() {
         try {
             labels = FileUtil.loadLabels(context, "corn.txt");
